@@ -67,12 +67,18 @@ function PublicCharities() {
             </div>
 
             {selectedCharity && (
-                <div className="modal-overlay">
-                    <div className="glass-card" style={{ maxWidth: '700px', padding: '0', overflow: 'hidden' }}>
-                        <div style={{ height: '200px', background: 'var(--gradient)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            <h2 style={{ color: 'white', fontSize: '2.5rem' }}>{selectedCharity.name}</h2>
+                <div className="modal-overlay" onClick={() => setSelectedCharity(null)}>
+                    <div className="glass-card" onClick={e => e.stopPropagation()} style={{ maxWidth: '700px', padding: '0', overflow: 'hidden', position: 'relative', maxHeight: '90vh', display: 'flex', flexDirection: 'column' }}>
+                        <button 
+                            onClick={() => setSelectedCharity(null)}
+                            style={{ position: 'absolute', top: '20px', right: '20px', background: 'rgba(0,0,0,0.3)', border: 'none', color: 'white', width: '40px', height: '40px', borderRadius: '50%', cursor: 'pointer', zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px' }}
+                        >
+                            ×
+                        </button>
+                        <div style={{ flexShrink: 0, height: '200px', background: 'var(--gradient)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            <h2 style={{ color: 'white', fontSize: '2.5rem', textAlign: 'center', padding: '0 20px' }}>{selectedCharity.name}</h2>
                         </div>
-                        <div style={{ padding: '40px' }}>
+                        <div style={{ padding: '40px', overflowY: 'auto' }}>
                             <h3 style={{ marginBottom: '15px', color: 'var(--primary)' }}>About this Mission</h3>
                             <p style={{ color: '#cbd5e1', lineHeight: '1.8', fontSize: '1.05rem', marginBottom: '30px' }}>{selectedCharity.description}</p>
                             
@@ -85,8 +91,8 @@ function PublicCharities() {
                             </div>
 
                             <div style={{ display: 'flex', gap: '15px', marginTop: '40px' }}>
-                                <button style={{ flex: 1 }} onClick={() => navigate("/signup")}>Partner with this Charity</button>
-                                <button style={{ flex: 1, background: 'rgba(255,255,255,0.1)', boxShadow: 'none' }} onClick={() => setSelectedCharity(null)}>Close</button>
+                                <button className="hero-btn" style={{ flex: 1 }} onClick={() => navigate("/signup")}>Partner with this Charity</button>
+                                <button className="select-btn" style={{ flex: 1, background: 'rgba(255,255,255,0.1)', boxShadow: 'none' }} onClick={() => setSelectedCharity(null)}>Close</button>
                             </div>
                         </div>
                     </div>
