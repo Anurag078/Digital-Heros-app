@@ -29,6 +29,7 @@ app.use(`${BASE_URL}/subscription`, subscriptionRoutes);
 app.use(`${BASE_URL}/campaigns`, campaignRoutes);
 
 // Global Health Check
+app.get("/", (req, res) => res.send("<h1>Digital Heroes API</h1><p>Status: <b>Live</b>. Use /api/v1 for endpoints.</p>"));
 app.get("/health", (req, res) => res.json({ status: "running", version: "v1.0.0", environment: "hero-dev" }));
 
 export default app;
