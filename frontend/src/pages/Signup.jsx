@@ -73,15 +73,21 @@ function Signup() {
 
           <div className="input-group">
             <label>Select Your Charity</label>
-            <select 
-              required
-              onChange={(e) => setForm({ ...form, charity_id: e.target.value })}
-            >
-              <option value="">-- Choose a Charity --</option>
-              {charities.map(c => (
-                <option key={c.id} value={c.id}>{c.name}</option>
-              ))}
-            </select>
+            {charities.length > 0 ? (
+              <select 
+                required
+                onChange={(e) => setForm({ ...form, charity_id: e.target.value })}
+              >
+                <option value="">-- Choose a Charity --</option>
+                {charities.map(c => (
+                  <option key={c.id} value={c.id}>{c.name}</option>
+                ))}
+              </select>
+            ) : (
+              <div style={{ padding: '10px', background: 'rgba(239, 68, 68, 0.1)', borderRadius: '8px', color: '#ef4444', fontSize: '0.8rem' }}>
+                ⚠️ No charities found. Please add charities in the Admin Portal or check your database connection.
+              </div>
+            )}
           </div>
 
           <div className="input-group">
