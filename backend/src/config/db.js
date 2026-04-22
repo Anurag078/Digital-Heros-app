@@ -14,6 +14,17 @@ const pool = mysql.createPool({
   queueLimit: 0,
 });
 
+// Test the connection on startup
+pool.getConnection()
+  .then(connection => {
+    console.log('✅ Database connected successfully!');
+    connection.release();
+  })
+  .catch((err) => {
+    console.error('❌ Database connection failed!');
+    console.error('Error Details:', err.message);
+  });
+
 const KNOWN_FK_BY_JOIN_TABLE = {
   users: "user_id",
   draws: "draw_id",
