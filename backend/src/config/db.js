@@ -22,7 +22,9 @@ pool.getConnection()
   })
   .catch((err) => {
     console.error('❌ Database connection failed!');
-    console.error('Error Details:', err.message);
+    console.error('Error Code:', err.code || 'UNKNOWN');
+    console.error('Error Message:', err.message);
+    console.error('Target Host:', process.env.DB_HOST ? process.env.DB_HOST.substring(0, 5) + '...' : 'NOT_SET');
   });
 
 const KNOWN_FK_BY_JOIN_TABLE = {
